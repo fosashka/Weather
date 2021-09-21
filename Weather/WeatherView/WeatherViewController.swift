@@ -50,7 +50,8 @@ class WeatherViewController: UIViewController, WeatherDisplayLogic {
         table.delegate = self
         table.dataSource = self
         
-        table.backgroundColor = .blue
+        table.backgroundColor = .clear
+        view.backgroundColor = #colorLiteral(red: 0.1333316236, green: 0.4177086425, blue: 1, alpha: 1)
         
         interactor?.makeRequest(request: Weather.Model.Request.RequestType.getCurrentWeather)
         
@@ -69,8 +70,16 @@ class WeatherViewController: UIViewController, WeatherDisplayLogic {
     func displayData(viewModel: Weather.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayCurrentWeather(weatherViewModel: let weatherViewModel):
+            setBackground(image: weatherViewModel.weatherMainConditionGroup)
             tableHeader.set(viewModel: weatherViewModel)
         }
+    }
+    
+    private func setBackground(image: UIImage) {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = image
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
     
 }

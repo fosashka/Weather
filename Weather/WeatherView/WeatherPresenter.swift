@@ -26,13 +26,17 @@ class WeatherPresenter: WeatherPresentationLogic {
     private func cellViewModel(currentWeather: CurrentWeather) -> WeatherViewModel.Cell {
         
         var weatherCondition: String?
+        var weatherMainConditionGroup: String?
         
         for currentIndex in currentWeather.weather {
             weatherCondition = currentIndex.description
+            weatherMainConditionGroup = currentIndex.main
         }
         
+        let background = WeatherBackgroundManager(rawValue: weatherMainConditionGroup ?? "").image
     
         return WeatherViewModel.Cell.init(cityName: currentWeather.name,
+                                          weatherMainConditionGroup: background,
                                           weatherCondition: weatherCondition ?? "",
                                           temp: currentWeather.main.tempString,
                                           feelsLike: currentWeather.main.feelsLikeString,

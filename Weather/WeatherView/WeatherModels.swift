@@ -32,6 +32,7 @@ enum Weather {
 struct WeatherViewModel {
     struct Cell: WeatherTableHeader {
         var cityName: String
+        var weatherMainConditionGroup: UIImage
         var weatherCondition: String
         var temp: String
         var feelsLike: String

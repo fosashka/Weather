@@ -21,6 +21,7 @@ struct CoordinatesResponse: Codable {
 }
 
 struct WeatherResponse: Codable {
+    let main: String
     let description: String
     let icon: String
 }
