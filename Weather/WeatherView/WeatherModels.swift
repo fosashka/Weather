@@ -14,23 +14,26 @@ enum Weather {
     struct Request {
       enum RequestType {
         case getCurrentWeather
+        case getDailyWeather
       }
     }
     struct Response {
       enum ResponseType {
         case presentCurrentWeather(weather: CurrentWeather)
+        case presentDailyWeather(weather: DailyWeather)
       }
     }
     struct ViewModel {
       enum ViewModelData {
-        case displayCurrentWeather(weatherViewModel: WeatherViewModel.Cell)
+        case displayCurrentWeather(weatherViewModel: WeatherViewModel.Header)
+        case displayDailyWeather(weatherViewModel: WeatherViewModel)
       }
     }
   }
 }
 
 struct WeatherViewModel {
-    struct Cell: WeatherTableHeader {
+    struct Header: WeatherTableHeader {
         var cityName: String
         var weatherMainConditionGroup: UIImage
         var weatherCondition: String
@@ -40,6 +43,13 @@ struct WeatherViewModel {
         var humidity: String
     }
     
-    let cells: [Cell]
+    struct DailyCell: WeatherTableViewCellProtocol {
+        var dayOfWeek: String
+        var iconWeather: UIImage
+        var maxTemp: String
+        var minTemp: String
+    }
+    
+    let dailyCells: [DailyCell]
     
 }

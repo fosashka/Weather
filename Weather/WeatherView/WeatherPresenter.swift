@@ -19,11 +19,19 @@ class WeatherPresenter: WeatherPresentationLogic {
         switch response {
         case .presentCurrentWeather(weather: let weather):
             
-            viewController?.displayData(viewModel: Weather.Model.ViewModel.ViewModelData.displayCurrentWeather(weatherViewModel: cellViewModel(currentWeather: weather)))
+            viewController?.displayData(viewModel: Weather.Model.ViewModel.ViewModelData.displayCurrentWeather(weatherViewModel: currentCellViewModel(currentWeather: weather)))
+            
+        case .presentDailyWeather(weather: let weather):
+            
+            let dailyCells = weather.daily.map { dailyResponse in
+                dailyCellViewModel(dailyWeather: dailyResponse, iconWeather: dailyResponse.weather)
+            }
+            let dailyViewModel = WeatherViewModel.init(dailyCells: dailyCells)
+            viewController?.displayData(viewModel: Weather.Model.ViewModel.ViewModelData.displayDailyWeather(weatherViewModel: dailyViewModel))
         }
     }
     
-    private func cellViewModel(currentWeather: CurrentWeather) -> WeatherViewModel.Cell {
+    private func currentCellViewModel(currentWeather: CurrentWeather) -> WeatherViewModel.Header {
         
         var weatherCondition: String?
         var weatherMainConditionGroup: String?
@@ -35,12 +43,36 @@ class WeatherPresenter: WeatherPresentationLogic {
         
         let background = WeatherBackgroundManager(rawValue: weatherMainConditionGroup ?? "").image
     
-        return WeatherViewModel.Cell.init(cityName: currentWeather.name,
+        return WeatherViewModel.Header.init(cityName: currentWeather.name,
                                           weatherMainConditionGroup: background,
                                           weatherCondition: weatherCondition ?? "",
                                           temp: currentWeather.main.tempString,
                                           feelsLike: currentWeather.main.feelsLikeString,
                                           pressure: currentWeather.main.pressureString,
                                           humidity: currentWeather.main.humidityString)
+    }
+    
+    private func dailyCellViewModel(dailyWeather: DailyResponse, iconWeather: [DailyWeatherResponse]) -> WeatherViewModel.DailyCell {
+        
+        return WeatherViewModel.DailyCell.init(dayOfWeek: getDayForDate(date: dailyWeather.dt),
+                                               iconWeather: iconWeatherImage(imageCount: iconWeather),
+                                               maxTemp: dailyWeather.temp.maxString,
+                                               minTemp: dailyWeather.temp.minString)
+    }
+    
+    private func getDayForDate(date: Date?) -> String {
+        guard let inputDate = date else { return "" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        formatter.locale = Locale(identifier: "ru_RU")
+        return formatter.string(from: inputDate).capitalized
+    }
+    
+    private func iconWeatherImage(imageCount: [DailyWeatherResponse]) -> UIImage {
+        var iconWeather: UIImage?
+        for image in imageCount {
+            iconWeather = WeatherIconManager(rawValue: image.main ).image
+        }
+        return iconWeather ?? UIImage()
     }
 }

@@ -14,8 +14,6 @@ protocol WeatherBusinessLogic {
 
 class WeatherInteractor: WeatherBusinessLogic {
     
-    var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
-    
     var presenter: WeatherPresentationLogic?
     var service: WeatherService?
     
@@ -30,6 +28,11 @@ class WeatherInteractor: WeatherBusinessLogic {
             service?.fetchCurrentWeather(completion: { [weak self] currentWeather in
                 guard let currentWeather = currentWeather else { return }
                 self?.presenter?.presentData(response: Weather.Model.Response.ResponseType.presentCurrentWeather(weather: currentWeather))
+            })
+        case .getDailyWeather:
+            service?.fetchDailyWeather(completion: { [weak self] dailyWeather in
+                guard let dailyWeather = dailyWeather else { return }
+                self?.presenter?.presentData(response: Weather.Model.Response.ResponseType.presentDailyWeather(weather: dailyWeather))
             })
         }
     }

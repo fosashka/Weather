@@ -13,6 +13,7 @@ struct DailyWeather: Codable {
 }
 
 struct DailyResponse: Codable {
+    let dt: Date
     let temp: TempResponse
     let weather: [DailyWeatherResponse]
 }
@@ -23,5 +24,10 @@ struct TempResponse: Codable {
 }
 
 struct DailyWeatherResponse: Codable {
-    let icon: String
+    let main: String
+}
+
+extension TempResponse {
+    var minString: String { return "\(min)" }
+    var maxString: String { return "\(max)" }
 }
