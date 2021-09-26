@@ -22,8 +22,12 @@ class TableHeader: UIView {
     private var cityName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "-----"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,8 +36,12 @@ class TableHeader: UIView {
     private var weatherCondition: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "-----"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,8 +50,12 @@ class TableHeader: UIView {
     private var temp: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 90, weight: .thin)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "-----"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -52,8 +64,12 @@ class TableHeader: UIView {
     private var degreeSign: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 90, weight: .thin)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "˚"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,8 +78,12 @@ class TableHeader: UIView {
     private var feelsLike: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "-----"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -72,8 +92,12 @@ class TableHeader: UIView {
     private var pressure: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "-----"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -82,8 +106,12 @@ class TableHeader: UIView {
     private var humidity: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
-//        label.textColor = .white
+        label.textColor = .white
         label.text = "-----"
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.5
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

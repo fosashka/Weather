@@ -29,12 +29,15 @@ class WeatherTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        dayOfWeek.textColor = .white
-//        maxTemp.textColor = .white
-//        minTemp.textColor = .white
+        setDesignLabel()
         
+        cardView.backgroundColor = .clear
         cardView.layer.cornerRadius = 15
-        cardView.backgroundColor = #colorLiteral(red: 0.6587240816, green: 0.6587240816, blue: 0.6587240816, alpha: 0.35)
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = contentView.bounds
+        cardView.insertSubview(blurView, at: 0)
+        
         
     }
     
@@ -43,5 +46,25 @@ class WeatherTableViewCell: UITableViewCell {
         self.iconWeather.image = viewModel.iconWeather
         self.maxTemp.text = viewModel.maxTemp
         self.minTemp.text = viewModel.minTemp
+    }
+    
+    private func setDesignLabel() {
+        dayOfWeek.textColor = .white
+        dayOfWeek.layer.shadowColor = UIColor.black.cgColor
+        dayOfWeek.layer.shadowRadius = 1.5
+        dayOfWeek.layer.shadowOpacity = 0.7
+        dayOfWeek.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        
+        maxTemp.textColor = .white
+        maxTemp.layer.shadowColor = UIColor.black.cgColor
+        maxTemp.layer.shadowRadius = 1.5
+        maxTemp.layer.shadowOpacity = 0.7
+        maxTemp.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        
+        minTemp.textColor = .white
+        minTemp.layer.shadowColor = UIColor.black.cgColor
+        minTemp.layer.shadowRadius = 1.5
+        minTemp.layer.shadowOpacity = 0.7
+        minTemp.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
     }
 }
